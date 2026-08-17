@@ -1,6 +1,6 @@
 <x-layouts.mobile title="Hasil Analisis">
     <!-- Header -->
-    <header class="bg-[#247B46] text-white py-4 px-4 flex items-center shadow-md relative">
+    <header class="bg-[#247B46] text-white pt-9 pb-4 px-4 sm:py-4 flex items-center shadow-md relative">
         <a href="{{ route('detection.index') }}" class="p-1 hover:bg-white/20 rounded-full transition">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18">
@@ -55,15 +55,19 @@
         </div>
 
         <!-- Buttons -->
-        <div class="w-full space-y-2.5 mt-6 mb-2">
+        <div class="w-full space-y-2.5 mt-6 mb-2 relative z-20">
             @if($isHoax)
-                <button type="button"
-                    class="w-full bg-[#245D81] hover:bg-[#1d4c6a] text-white font-bold py-3 px-4 rounded-xl text-sm transition">
+                @php
+                    $waText = "Halo Mafindo, saya ingin melaporkan dugaan berita hoaks herbal:\n\n*Teks/Klaim Berita:*\n\"" . \Illuminate\Support\Str::limit($originalText ?? '', 150) . "\"\n\n*Sumber / Link Hoaks (Didapat dari mana):*\n[Tempelkan link atau sumber berita di sini]";
+                    $waUrl = "https://api.whatsapp.com/send?phone=6285921600500&text=" . rawurlencode($waText);
+                @endphp
+                <a href="{{ $waUrl }}"
+                    class="block text-center w-full bg-[#245D81] hover:bg-[#1d4c6a] active:bg-[#16384e] text-white font-bold py-3 px-4 rounded-xl text-sm transition shadow-sm relative z-20 cursor-pointer">
                     Laporkan
-                </button>
+                </a>
             @endif
             <a href="{{ route('detection.index') }}"
-                class="block text-center w-full {{ $isHoax ? 'bg-white border-2 border-[#245D81] text-[#245D81]' : 'bg-[#245D81] text-white' }} font-bold py-2.5 px-4 rounded-xl text-sm transition">
+                class="block text-center w-full {{ $isHoax ? 'bg-white border-2 border-[#245D81] text-[#245D81]' : 'bg-[#245D81] text-white' }} font-bold py-2.5 px-4 rounded-xl text-sm transition relative z-20">
                 Kembali
             </a>
         </div>

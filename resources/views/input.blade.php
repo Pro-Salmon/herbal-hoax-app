@@ -1,6 +1,6 @@
 <x-layouts.mobile title="Cek Herbal Hoaks">
     <!-- Header -->
-    <header class="bg-[#247B46] text-white py-4 px-6 text-center shadow-md">
+    <header class="bg-[#247B46] text-white pt-9 pb-4 px-6 sm:py-4 text-center shadow-md">
         <h1 class="text-lg font-bold">Cek Herbal Hoaks</h1>
     </header>
 
